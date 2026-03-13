@@ -27,6 +27,11 @@
   object-position: center;
 }
 
+.productInfo {
+  display: flex;
+  flex-direction: column;
+}
+
 .productCardHeader {
   display: flex;
   justify-content: space-between;

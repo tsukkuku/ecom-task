@@ -3,11 +3,18 @@ import style from "./ProductCard.module.css";
 
 interface ProductCardProps {
   product: Product;
+  setSelectedProduct: (product: Product) => void;
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({
+  product,
+  setSelectedProduct,
+}: ProductCardProps) => {
   return (
-    <div className={style.productCard}>
+    <div
+      className={style.productCard}
+      onClick={() => setSelectedProduct(product)}
+    >
       <div className={style.productImage}>
         <img src={product.image} alt={product.title} className={style.image} />
       </div>

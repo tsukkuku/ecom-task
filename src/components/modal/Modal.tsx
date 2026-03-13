@@ -6,7 +6,7 @@ import style from "./Modal.module.css";
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  product: Product;
+  product: Product | null;
 }
 
 export const Modal = ({ product, isOpen, onClose }: ModalProps) => {
@@ -23,15 +23,36 @@ export const Modal = ({ product, isOpen, onClose }: ModalProps) => {
       className={`${style.modal} ${isOpen ? style.active : ""}`}
       onClick={onClose}
     >
-      <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
-        <div className={style.modalHeader}>
-          <div className={style.modalTitle}>{product.price}</div>
-          <button onClick={onClose} className={style.closeButton}>
-            ×
-          </button>
+      {isOpen && (
+        <div
+          className={style.modalContent}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className={style.modalHeader}>
+            <div className={style.modalTitle}>{product?.title}</div>
+            <button onClick={onClose} className={style.closeButton}>
+              ×
+            </button>
+          </div>
+          <div className={style.modalBody}>
+            <div className={style.imgContainer}>
+              <img
+                src={product?.image}
+                alt={product?.title}
+                className={style.img}
+              />
+            </div>
+            <div className={style.productInfo}>
+              <div className={style.title}>{product?.title}</div>
+              <div className={style.description}>{product?.description}</div>
+              <div className={style.price}>
+                Цена: {product?.price.toLocaleString()}₽
+              </div>
+              <button className={style.buyBtn}>Купить</button>
+            </div>
+          </div>
         </div>
-        <div className={style.modalBody}>{product.title}</div>
-      </div>
+      )}
     </div>,
     document.body,
   );

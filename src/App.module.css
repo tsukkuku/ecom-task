@@ -24,6 +24,13 @@
   align-items: center;
 }
 
+.loadingMsg,
+.notFoundMsg {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+
 @media (max-width: 1025px) {
   .productList {
     grid-template-columns: repeat(2, 1fr);
